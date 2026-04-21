@@ -5,15 +5,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class GDBTOModShortcodes {
-	private $advanced = array( 'url', 'google', 'youtube', 'note' );
-	private $shortcodes = array();
+	private array $advanced = array( 'url', 'google', 'youtube', 'note' );
+	private array $shortcodes = array();
 
-	private $removal;
-	private $notice;
-	private $restricted;
-	private $bbpress_only;
+	private string $removal;
+	private bool $notice;
+	private bool $restricted;
+	private bool $bbpress_only;
 
-	private $list_deactivated;
+	private array $list_deactivated;
 
 	public function __construct( $bbpress_only = false, $restricted = false, $removal = 'info', $deactivated = array(), $notice = true ) {
 		$this->bbpress_only     = $bbpress_only;
@@ -26,7 +26,7 @@ class GDBTOModShortcodes {
 
 		$list = array_keys( $this->shortcodes );
 		foreach ( $list as $shortcode ) {
-			$deactivate = in_array( $shortcode, $this->list_deactivated );
+			$deactivate = in_array( $shortcode, $this->list_deactivated, true );
 
 			if ( ! $deactivate ) {
 				add_shortcode( $shortcode, array( $this, 'shortcode_' . $shortcode ) );
@@ -48,7 +48,7 @@ class GDBTOModShortcodes {
 		add_filter( 'bbp_get_topic_content', 'do_shortcode' );
 	}
 
-	private function _init() {
+	private function _init() : void {
 		$this->shortcodes = array(
 			'b'          => array(
 				'name' => __( 'Bold', 'gd-bbpress-tools' ),
@@ -179,7 +179,7 @@ class GDBTOModShortcodes {
 		);
 	}
 
-	private function _scope() {
+	private function _scope() : bool {
 		global $post;
 
 		if ( $this->bbpress_only ) {
@@ -189,7 +189,7 @@ class GDBTOModShortcodes {
 		}
 	}
 
-	private function _atts( $code, $atts = array() ) {
+	private function _atts( $code, $atts = array() ) : array {
 		if ( isset( $atts[0] ) ) {
 			$atts[ $code ] = substr( $atts[0], 1 );
 			unset( $atts[0] );
@@ -209,7 +209,7 @@ class GDBTOModShortcodes {
 		}
 	}
 
-	private function _tag( $tag, $name, $content = null, $atts = array(), $args = array() ) {
+	private function _tag( $tag, $name, $content = null, $atts = array(), $args = array() ) : string {
 		$attributes = array( 'class' => 'd4pbbc-' . $name );
 
 		foreach ( $atts as $key => $value ) {
@@ -232,7 +232,7 @@ class GDBTOModShortcodes {
 
 		foreach ( $attributes as $key => $value ) {
 			if ( trim( $value ) != '' && $key != 'raw' && $key != $name ) {
-				$render .= ' ' . $key . '="' . trim( $value ) . '"';
+				$render .= ' ' . $key . '="' . esc_attr( trim( $value ) ) . '"';
 			}
 		}
 
@@ -296,9 +296,9 @@ class GDBTOModShortcodes {
 
 	}
 
-	private function _strip( $m ) {
+	private function _strip( $m ) : string {
 		if ( $this->removal == 'info' ) {
-			return '[blockquote]' . __( 'BBCode you used is not allowed.', 'gd-bbpress-tools' ) . '[/blockquote]';
+			return '[blockquote]' . esc_html__( 'BBCode you used is not allowed.', 'gd-bbpress-tools' ) . '[/blockquote]';
 		} else {
 			return '';
 		}
@@ -318,11 +318,15 @@ class GDBTOModShortcodes {
 
 	public function show_notice() {
 		echo '<div class="bbp-template-notice"><p>';
-		echo __( 'You can use BBCodes to format your content.', 'gd-bbpress-tools' );
+
+		esc_html_e( 'You can use BBCodes to format your content.', 'gd-bbpress-tools' );
+
 		if ( $this->restricted ) {
-			echo '<br/>' . __( 'Your account can\'t use Advanced BBCodes, they will be stripped before saving.', 'gd-bbpress-tools' );
+			echo '<br/>' . esc_html__( 'Your account can\'t use Advanced BBCodes, they will be stripped before saving.', 'gd-bbpress-tools' );
 		}
+
 		do_action( 'd4p_bbpresstools_bbcode_notice' );
+
 		echo '</p></div>';
 	}
 
@@ -461,13 +465,13 @@ class GDBTOModShortcodes {
 		$args = $this->shortcodes['area']['args'] ?? array();
 
 		if ( $atts['area'] != '' ) {
-			$content = '<legend>' . $atts['area'] . '</legend>' . $content;
+			$content = '<legend>' . esc_html( $atts['area'] ) . '</legend>' . $content;
 		}
 
 		return $this->_tag( 'fieldset', 'area', $content, $atts, $args );
 	}
 
-	public function shortcode_hr( $atts ) {
+	public function shortcode_hr( $atts ) : string {
 		$atts = $this->_atts( 'hr', $atts );
 
 		return $this->_tag( 'hr', 'hr', null, $atts );
@@ -501,7 +505,7 @@ class GDBTOModShortcodes {
 			}
 
 			if ( ! empty( $url ) ) {
-				$title = '<div class="d4p-bbt-quote-title"><a href="' . $url . '">' . $ath . ' ' . __( 'wrote', 'gd-bbpress-tools' ) . ':</a></div>';
+				$title = '<div class="d4p-bbt-quote-title"><a href="' . esc_url( $url ) . '">' . esc_html( $ath ) . ' ' . esc_html__( 'wrote', 'gd-bbpress-tools' ) . ':</a></div>';
 			}
 		}
 
@@ -525,6 +529,8 @@ class GDBTOModShortcodes {
 		} else {
 			$args['href'] = $content;
 		}
+
+		$args['href'] = esc_url( $args['href'] );
 
 		return $this->_tag( 'a', 'url', $content, $atts, $args );
 	}
@@ -577,7 +583,7 @@ class GDBTOModShortcodes {
 
 		$link .= '/search?q=' . urlencode( $content );
 
-		$args['href'] = $link;
+		$args['href'] = esc_url( $link );
 
 		return $this->_tag( 'a', 'google', $content, $atts, $args );
 	}
@@ -593,13 +599,13 @@ class GDBTOModShortcodes {
 
 		$atts = $this->_atts( 'youtube', $atts );
 
-		if ( strpos( $content, 'youtube.com' ) === false && strpos( $content, 'youtu.be' ) === false ) {
+		if ( ! str_contains( $content, 'youtube.com' ) && ! str_contains( $content, 'youtu.be' ) ) {
 			$protocol = is_ssl() ? 'https' : 'http';
 			$url      = $protocol . '://www.youtube.com/watch?v=' . $content;
 		} else {
 			$url = $content;
 
-			if ( is_ssl() && substr( $url, 0, 5 ) != 'https' ) {
+			if ( is_ssl() && ! str_starts_with( $url, 'https' ) ) {
 				$url = 'https' . substr( $url, 4 );
 			}
 		}
@@ -637,13 +643,13 @@ class GDBTOModShortcodes {
 
 		$atts = $this->_atts( 'vimeo', $atts );
 
-		if ( strpos( $content, 'vimeo.com' ) === false ) {
+		if ( ! str_contains( $content, 'vimeo.com' ) ) {
 			$protocol = is_ssl() ? 'https' : 'http';
 			$url      = $protocol . '://www.vimeo.com/' . $content;
 		} else {
 			$url = $content;
 
-			if ( is_ssl() && substr( $url, 0, 5 ) != 'https' ) {
+			if ( is_ssl() && ! str_starts_with( $url, 'https' ) ) {
 				$url = 'https' . substr( $url, 4 );
 			}
 		}

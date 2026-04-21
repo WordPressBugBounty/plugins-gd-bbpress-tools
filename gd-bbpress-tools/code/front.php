@@ -11,7 +11,7 @@ class GDBTOFront {
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 	}
 
-	public static function instance() {
+	public static function instance() : GDBTOFront {
 		static $instance = false;
 
 		if ( $instance === false ) {
@@ -21,7 +21,7 @@ class GDBTOFront {
 		return $instance;
 	}
 
-	public function register_scripts_and_styles() {
+	public function register_scripts_and_styles() : void {
 		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 		$files = 'front' . ( $debug ? '' : '.min' );
 
@@ -29,7 +29,7 @@ class GDBTOFront {
 		wp_register_script( 'gdbto-front', GDBBPRESSTOOLS_URL . 'js/' . $files . '.js', array( 'jquery' ), GDBBPRESSTOOLS_VERSION, true );
 	}
 
-	public function include_scripts_and_styles() {
+	public function include_scripts_and_styles() : void {
 		wp_enqueue_style( 'gdbto-front' );
 		wp_enqueue_script( 'gdbto-front' );
 
@@ -40,7 +40,7 @@ class GDBTOFront {
 		) );
 	}
 
-	public function wp_enqueue_scripts() {
+	public function wp_enqueue_scripts() : void {
 		if ( d4p_bbt_o( 'include_always' ) == 1 || d4p_is_bbpress() ) {
 			$this->include_scripts_and_styles();
 		}

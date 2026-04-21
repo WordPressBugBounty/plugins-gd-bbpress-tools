@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class GDBTODefaults {
-	var $default_options = array(
-		'version'                                => '3.5.3',
-		'date'                                   => '2024.08.19.',
-		'build'                                  => 2450,
+	public array $default_options = array(
+		'version'                                => '4.0',
+		'date'                                   => '2026.04.21.',
+		'build'                                  => 2500,
 		'status'                                 => 'stable',
 		'product_id'                             => 'gd-bbpress-tools',
 		'edition'                                => 'free',
@@ -53,7 +53,7 @@ class GDBTODefaults {
 		'view_topicsfreshness_active'            => 1,
 	);
 
-	var $capabilities = array(
+	public array $capabilities = array(
 		'd4p_bbpt_toolbar',
 		'd4p_bbpt_admin_disable',
 		'd4p_bbpt_quote',

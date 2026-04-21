@@ -2,6 +2,14 @@
 
 ## Changelog
 
+### Version: 4.0 (2026.04.21)
+* **new** system requirements: PHP 8.0 or newer
+* **new** system requirements: WordPress 6.2 or newer
+* **edit** various security-related updates and improvements
+* **edit** improvements to the main JavaScript code
+* **fix** XSS vulnerability related to BBCodes processing
+* **fix** the issue with Quote object initialization
+
 ### Version: 3.5.3 (2024.08.19)
 * **edit** updated links to the Dev4Press website
 * **edit** various PHP code changes and improvements

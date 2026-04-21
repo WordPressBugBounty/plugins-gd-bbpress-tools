@@ -6,12 +6,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'gdbbp_Error' ) ) {
 	class gdbbp_Error {
-		var $errors = array();
+		var array $errors = array();
 
 		function __construct() {
 		}
 
-		function add( $code, $message, $data ) {
+		function add( $code, $message, $data ) : void {
 			$this->errors[ $code ][] = array( $message, $data );
 		}
 	}
@@ -65,7 +65,7 @@ if ( ! function_exists( 'd4p_bbpress_version' ) ) {
 	 *
 	 * @return mixed version value
 	 */
-	function d4p_bbpress_version( $ret = 'code' ) {
+	function d4p_bbpress_version( string $ret = 'code' ) {
 		if ( ! d4p_has_bbpress() ) {
 			return null;
 		}
@@ -107,7 +107,7 @@ if ( ! function_exists( 'd4p_is_user_moderator' ) ) {
 		global $current_user;
 
 		if ( is_array( $current_user->roles ) ) {
-			return in_array( 'bbp_moderator', $current_user->roles );
+			return in_array( 'bbp_moderator', $current_user->roles, true );
 		} else {
 			return false;
 		}
@@ -124,7 +124,7 @@ if ( ! function_exists( 'd4p_is_user_admin' ) ) {
 		global $current_user;
 
 		if ( is_array( $current_user->roles ) ) {
-			return in_array( 'administrator', $current_user->roles );
+			return in_array( 'administrator', $current_user->roles, true );
 		} else {
 			return false;
 		}
@@ -193,7 +193,7 @@ if ( ! function_exists( 'd4p_bbp_update_shorthand_bbcodes' ) ) {
 		$bbcodes = array( 'quote', 'url', 'size', 'color', 'area', 'anchor', 'img', 'youtube', 'vimeo' );
 
 		foreach ( $bbcodes as $bbc ) {
-			if ( strpos( $content, '[' . $bbc . '=' ) !== false ) {
+			if ( str_contains( $content, '[' . $bbc . '=' ) ) {
 				$content = str_replace( '[' . $bbc . '=', '[' . $bbc . ' ' . $bbc . '=', $content );
 			}
 		}

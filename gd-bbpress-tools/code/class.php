@@ -5,16 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class GDBTOCore {
-	private $wp_version;
-	private $plugin_path;
-	private $plugin_url;
-
 	public $l;
 	public $o;
 
-	public $is_search = false;
+	public bool $is_search = false;
 
-	public $mod = array(
+	public array $mod = array(
 		'a' => null,
 		'i' => null,
 		's' => null,
@@ -34,7 +30,7 @@ class GDBTOCore {
 		add_action( 'bbp_init', array( $this, 'hook_modules' ) );
 	}
 
-	public static function instance() {
+	public static function instance() : GDBTOCore {
 		static $instance = false;
 
 		if ( $instance === false ) {
@@ -44,10 +40,12 @@ class GDBTOCore {
 		return $instance;
 	}
 
-	private function _init() {
+	private function _init() : void {
 		global $wp_version;
-		$this->wp_version = substr( str_replace( '.', '', $wp_version ), 0, 2 );
-		define( 'GDBBPRESSTOOLS_WPV', intval( $this->wp_version ) );
+
+		$wpv = substr( str_replace( '.', '', $wp_version ), 0, 2 );
+
+		define( 'GDBBPRESSTOOLS_WPV', intval( $wpv ) );
 
 		$gdd = new GDBTODefaults();
 
@@ -73,11 +71,11 @@ class GDBTOCore {
 		define( 'GDBBPRESSTOOLS_INSTALLED', $gdd->default_options['version'] . ' Free' );
 		define( 'GDBBPRESSTOOLS_VERSION', $gdd->default_options['version'] . '_b' . ( $gdd->default_options['build'] . '_free' ) );
 
-		$this->plugin_path = dirname( __FILE__, 2 ) . '/';
-		$this->plugin_url  = plugins_url( '/gd-bbpress-tools/' );
+		$plugin_path = dirname( __FILE__, 2 ) . '/';
+		$plugin_url  = plugins_url( '/gd-bbpress-tools/' );
 
-		define( 'GDBBPRESSTOOLS_URL', $this->plugin_url );
-		define( 'GDBBPRESSTOOLS_PATH', $this->plugin_path );
+		define( 'GDBBPRESSTOOLS_URL', $plugin_url );
+		define( 'GDBBPRESSTOOLS_PATH', $plugin_path );
 	}
 
 	private function _upgrade( $old, $new ) {
@@ -101,7 +99,7 @@ class GDBTOCore {
 		return $old;
 	}
 
-	public function load_modules() {
+	public function load_modules() : void {
 		if ( ! function_exists( 'bbp_version' ) ) {
 			return;
 		}
@@ -167,7 +165,7 @@ class GDBTOCore {
 		$views  = array();
 		$active = false;
 		foreach ( $this->o as $key => $val ) {
-			if ( substr( $key, 0, 5 ) == 'view_' ) {
+			if ( str_starts_with( $key, 'view_' ) ) {
 				$parts                           = explode( '_', $key, 3 );
 				$views[ $parts[1] ][ $parts[2] ] = $val;
 
@@ -185,11 +183,11 @@ class GDBTOCore {
 		}
 	}
 
-	public function init_modules() {
+	public function init_modules() : void {
 		do_action( 'bbtoolbox_init' );
 	}
 
-	public function hook_modules() {
+	public function hook_modules() : void {
 		do_action( 'bbtoolbox_core' );
 	}
 
@@ -209,7 +207,7 @@ class GDBTOCore {
 		return $list;
 	}
 
-	public function load_plugin() {
+	public function load_plugin() : void {
 		if ( ! function_exists( 'bbp_version' ) ) {
 			return;
 		}
@@ -227,7 +225,7 @@ class GDBTOCore {
 		}
 	}
 
-	private function _kses_expanded_list_of_tags() {
+	private function _kses_expanded_list_of_tags() : array {
 		return array(
 			'a'          => array(
 				'class'    => true,

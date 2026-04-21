@@ -12,7 +12,7 @@ class GDBTOModAccess {
 	/** Based on the code by John James Jacoby from 'bbPress - No Admin' plugin:
 	 *  https://wordpress.org/extend/plugins/bbpress-no-admin/
 	 */
-	public function admin_disable_access() {
+	public function admin_disable_access() : void {
 		remove_action( 'admin_menu', 'bbp_admin_separator' );
 		remove_action( 'custom_menu_order', 'bbp_admin_custom_menu_order' );
 		remove_action( 'menu_order', 'bbp_admin_menu_order' );

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class GDBTOModViews {
-	public $views;
+	public array $views;
 
 	public function __construct( $views ) {
 		$this->views = $views;
@@ -13,7 +13,7 @@ class GDBTOModViews {
 		add_action( 'bbtoolbox_core', array( $this, 'register_views' ) );
 	}
 
-	public function register_views() {
+	public function register_views() : void {
 		foreach ( $this->views as $view => $args ) {
 			if ( $args['active'] == 1 ) {
 				$fnc = '_view_' . $view;
@@ -22,7 +22,7 @@ class GDBTOModViews {
 		}
 	}
 
-	private function _view_mostreplies( $args ) {
+	private function _view_mostreplies( $args ) : void {
 		bbp_register_view(
 			'most-replies',
 			__( 'Topics with most replies', 'gd-bbpress-tools' ),
@@ -30,7 +30,7 @@ class GDBTOModViews {
 			false );
 	}
 
-	private function _view_latesttopics( $args ) {
+	private function _view_latesttopics( $args ) : void {
 		bbp_register_view(
 			'latest-topics',
 			__( 'Latest topics', 'gd-bbpress-tools' ),
@@ -38,7 +38,7 @@ class GDBTOModViews {
 			false );
 	}
 
-	private function _view_topicsfreshness( $args ) {
+	private function _view_topicsfreshness( $args ) : void {
 		bbp_register_view(
 			'topics-freshness',
 			__( 'Topics Freshness', 'gd-bbpress-tools' ),

@@ -5,17 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class GDBTOModSignature {
-	public $active = false;
-	public $max_length;
-	public $enhanced;
-	public $method;
+	public bool $active = false;
+	public int $max_length;
+	public bool $enhanced;
+	public string $method;
 	public $profile_group;
 
-	public $bbcodes = false;
-	public $html = false;
+	public bool $bbcodes = false;
+	public bool $html = false;
 
 	public function __construct( $max_length = 512, $enhanced = true, $method = 'bbcode', $profile_group = 1 ) {
-		$this->max_length    = $max_length;
+		$this->max_length    = absint( $max_length );
 		$this->enhanced      = $enhanced;
 		$this->method        = $method;
 		$this->profile_group = $profile_group;
@@ -33,7 +33,7 @@ class GDBTOModSignature {
 		add_action( 'bbtoolbox_init', array( $this, 'init' ) );
 	}
 
-	public function init() {
+	public function init() : void {
 		if ( $this->active ) {
 			add_action( 'show_user_profile', array( $this, 'editor_form_profile' ) );
 			add_action( 'edit_user_profile', array( $this, 'editor_form_profile' ) );
@@ -50,17 +50,17 @@ class GDBTOModSignature {
 		$this->add_content_filters();
 	}
 
-	public function add_content_filters() {
+	public function add_content_filters() : void {
 		add_filter( 'bbp_get_topic_content', array( $this, 'reply_content' ), 10000, 2 );
 		add_filter( 'bbp_get_reply_content', array( $this, 'reply_content' ), 10000, 2 );
 	}
 
-	public function remove_content_filters() {
+	public function remove_content_filters() : void {
 		remove_filter( 'bbp_get_topic_content', array( $this, 'reply_content' ), 10000 );
 		remove_filter( 'bbp_get_reply_content', array( $this, 'reply_content' ), 10000 );
 	}
 
-	public function editor_form_profile( $profile_user ) {
+	public function editor_form_profile( $profile_user ) : void {
 		if ( ! is_admin() ) {
 			return;
 		}
@@ -77,14 +77,18 @@ class GDBTOModSignature {
 		include_once( apply_filters( 'd4p_bbpresstools_signature_editor_file', GDBBPRESSTOOLS_PATH . 'forms/tools/signature_profile.php' ) );
 	}
 
-	public function editor_form_bbpress() {
+	public function editor_form_bbpress() : void {
 		$_signature = d4p_bbp_update_shorthand_bbcodes( bbp_get_displayed_user_field( 'signature' ) );
 
 		$form = apply_filters( 'd4p_bbpresstools_signature_editor_file', GDBBPRESSTOOLS_PATH . 'forms/tools/signature_bbpress.php' );
 		include_once( $form );
 	}
 
-	public function editor_form_buddypress() {
+	public function editor_form_buddypress() : void {
+		if ( ! function_exists( 'bp_get_current_profile_group_id' ) ) {
+			return;
+		}
+
 		if ( bp_get_current_profile_group_id() == $this->profile_group ) {
 			$user_id = bp_displayed_user_id();
 
@@ -99,7 +103,7 @@ class GDBTOModSignature {
 		}
 	}
 
-	public function signature_info() {
+	public function signature_info() : void {
 		$message = array();
 
 		if ( ! $this->html && ! $this->bbcodes ) {
@@ -122,10 +126,10 @@ class GDBTOModSignature {
 			}
 		}
 
-		echo join( ' ', $message );
+		echo esc_html( join( ' ', $message ) );
 	}
 
-	public function format_signature( $sig ) {
+	public function format_signature( $sig ) : string {
 		if ( ! $this->html ) {
 			$sig = strip_tags( $sig );
 		}
@@ -145,7 +149,7 @@ class GDBTOModSignature {
 		return trim( $sig );
 	}
 
-	public function editor_save( $user_id ) {
+	public function editor_save( $user_id ) : void {
 		if ( isset( $_POST['signature'] ) ) {
 			$sig = $this->format_signature( $_POST['signature'] );
 

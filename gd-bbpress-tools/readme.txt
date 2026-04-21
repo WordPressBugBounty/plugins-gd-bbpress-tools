@@ -1,11 +1,11 @@
 === GD bbPress Tools ===
 Contributors: GDragoN
 Donate link: https://www.dev4press.com/plugins/gd-bbpress-tools/
-Version: 3.5.3
+Version: 4.0
 Tags: dev4press, bbpress, signature, quote, bbcodes
-Requires at least: 5.9
-Requires PHP: 7.4
-Tested up to: 6.6
+Requires at least: 6.2
+Requires PHP: 8.0
+Tested up to: 7.0
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -77,10 +77,10 @@ With more features on the roadmap exclusively for Pro version.
 
 == Installation ==
 = General Requirements =
-* PHP: 7.4 or newer
+* PHP: 8.0 or newer
 
 = WordPress Requirements =
-* WordPress: 5.9 or newer
+* WordPress: 6.2 or newer
 
 = bbPress Requirements =
 * bbPress Plugin: 2.6.2 or newer
@@ -116,275 +116,45 @@ The problem is caused by the Italic BBCode due to the conflict with the Undersco
 This happens because quoting can only take rendered HTML as is, and when saved, bbPress will remove some HTML elements based on the user role. [GD bbPress Toolbox Pro](https://www.dev4press.com/plugins/gd-bbpress-toolbox/) plugin includes additional features that expand the allowed HTML elements for all roles, and that solves this quote problem.
 
 == Upgrade Notice ==
+= 4.0 =
+Various security-related updates, improvements and fixes.
+
 = 3.5 =
 Few updates and improvements.
 
-= 3.4 =
-Various updates and improvements. Several bug fixes.
-
 == Changelog ==
+= 4.0 (2026.04.21) =
+* New: system requirements: PHP 8.0 or newer
+* New: system requirements: WordPress 6.2 or newer
+* Edit: various security-related updates and improvements
+* Edit: improvements to the main JavaScript code
+* Fix: XSS vulnerability related to BBCodes processing
+* Fix: the issue with Quote object initialization
+
 = 3.5.3 (2024.08.19) =
 * Edit: updated links to the Dev4Press website
 * Edit: various PHP code changes and improvements
 * Fix: fatal error on one of the admin panel tabs
 
 = 3.5.2 (2024.05.15) =
-* Edit few more tweaks to the main JavaScript code
-* Fix problems with the Quote not working with TinyMCE editor
+* Edit: few more tweaks to the main JavaScript code
+* Fix: problems with the Quote not working with TinyMCE editor
 
 = 3.5.1 (2024.05.14) =
-* Edit few more tweaks to the main JavaScript code
-* Edit various small updates to readme file
-* Fix missing semicolon in the JavaScript code
+* Edit: few more tweaks to the main JavaScript code
+* Edit: various small updates to readme file
+* Fix: missing semicolon in the JavaScript code
 
 = 3.5 (2024.04.28) =
-* New directive `Requires Plugin` added into main plugin file
-* New System requirements: PHP 7.4 or newer
-* New System requirements: WordPress 5.8 or newer
-* New plugin fully tested with WordPress up to 6.5
-* New plugin fully tested with PHP 8.3
-* Updated code style and translation formatting
-* Updated main plugin JavaScript library
+* New: directive `Requires Plugin` added into main plugin file
+* New: System requirements: PHP 7.4 or newer
+* New: System requirements: WordPress 5.8 or newer
+* New: plugin fully tested with WordPress up to 6.5
+* New: plugin fully tested with PHP 8.3
+* Updated: code style and translation formatting
+* Updated: main plugin JavaScript library
 
-= 3.4.1 (2023.07.15) =
-* Updated main plugin POT file to include few missing strings
-* Fixed the translation domain name in the main plugin file header
-
-= 3.4 (2023.03.08) =
-* New system requirements: PHP 7.3 or newer
-* New system requirements: WordPress 5.5 or newer
-* New system requirements: bbPress 2.6.2 or newer
-* New fully tested with PHP 8.0, 8.1 and 8.2
-* New notice on the Views tab about the Topic Views
-* Updated integration of signature editor in the admin side
-* Updated various things in PHP code for better PHP 8.x compatibility
-* Updated plugin admin interface items for better accessibility
-* Updated some code to remove use of deprecated functions
-* Fixed some accessibility issues with options labels
-* Fixed dimensions issue with the YouTube and Vimeo BBCodes
-* Fixed fatal error with signature editing in PHP 8
-
-= 3.3 (2022.12.03) =
-* New plugin is tested with WordPress 6.1
-* Updated settings page with use of escaping for attributes
-* Updated some aspects for the PHP core code style
-* Updated some system requirements
-
-= 3.2.1 (2022.05.16) =
-* New plugin is tested with WordPress 6.0
-
-= 3.2 - 2021.10.05 =
-* Improvements to the plugin readme file
-* Few more minor updates
-* Fixed issue with the hidden signature form
-
-= 3.1 - 2020.07.23 =
-* Improvements to the plugin readme file
-* Few more minor updates
-
-= 3.0.1 - 2020.05.13 =
-* Improvements to the plugin readme file
-* Fixed small issue with the new private prefix tweak
-* Fixed issue with the wrong include path
-
-= 3.0 - 2020.05.09 =
-* New Tweak to remove forum and topic Private prefix
-* New Tweak to load search form on top of all forums
-* New Tweak to load search form on top of all topics
-* New reorganized plugin code and the way it is loaded and run
-* New rewritten loading of JavaScript and CSS files
-* New fully reorganized CSS now written using SCSS
-* New loading JavaScript and CSS minified or normal
-* Removed WordPress 4.4 shortcodes update
-* Removed some outdated and unused code
-* Fixed issues when saving some plugin settings
-
-= 2.2 - 2019.09.02 =
-* Removed all outdated translations
-* Fixed a minor sanitation issues related to shortcodes
-
-= 2.1 - 2019.03.10 =
-* New option to change allowed HTML tags and attributes for topics and replies
-* Updated readme.txt file and included FAQ list
-
-= 2.0.2 - 2018.08.22 =
-* Changed default BBCode option to load on bbPress pages only to enabled
-* Updated BBCodes information for potential issue with BuddyPress
-* Updated readme.txt file and included FAQ list
-* Minor core code changes and improvements
-
-= 2.0.1 - 2018.07.27 =
-* Updated readme file with new FAQ entries
-* Updated plugin admin code to remove FAQ link
-
-= 2.0 - 2018.07.25 =
-* New interface for the plugin settings panel
-* New panel with settings for Tweaks
-* New tweak: show lead topic
-* New tweak: disable breadcrumbs
-* New tweak: topic tags in reply for topic author only
-* New topics view: Topics Freshness
-* Updated toolbar icon to use bbPress dashicon
-* Updated WordPress minimal requirement to 4.4
-* Updated PHP minimal requirement to 5.5
-
-= 1.9.3 - 2018.02.16 =
-* Updated function for universal rendering of BBCodes
-* Updated various URL's included in plugin and readme file
-
-= 1.9.2 - 2017.10.26 =
-* Added function to access BBCodes handler functions
-* Updated trim quote content before adding to editor
-* Updated several BBCodes handler functions
-* Fixed topic related issue with the quote BBCode
-* Fixed minor issue with the loading of Views module
-
-= 1.9.1 - 2017.09.20 =
-* Updated WordPress minimal requirement to 4.2
-* Updated several broken URL's
-* Updated and improved readme file
-
-= 1.9 - 2016.09.24 =
-* Updated sanitation of the plugin settings on save
-* Updated PHP minimal requirement to 5.3
-* Updated WordPress minimal requirement to 4.0
-* Updated several broken URL's
-* Updated several missing translation strings
-* Updated signature editors display filters
-
-= 1.8 - 2015.12.10 =
-* Auto update signature for shorthand BBCodes
-* Added update tool for WordPress 4.4 shortcodes changes
-* Added few missing translation strings
-* Updated list of BBCodes to remove shorthand notation
-* Updated loading of text domain for centralized translations loading
-* Fixed adding quote BBCode using shorthand notation
-* Fixed list of BBCodes in some cases missing quotes
-
-= 1.7.1 =
-* Updated several Dev4Press links
-* Fixed XSS security vulnerability with unsanitized input
-
-= 1.7 =
-* Added option to enable DIV tag in the content
-* Added check if user can set unfiltered HTML for signatures
-* Added option to allow mixing HTML and BBCode in signatures
-* Improved signature editing process loading and display
-* Fixed display of HTML signatures to non logged users
-* Fixed editing signatures on admin profile page breaks HTML
-* Fixed warning when saving signature in some cases
-* Fixed BuddyPress profile edit shows wrong signature
-* Fixed quote problem caused by filtered DIV tags
-* Fixed order of the quote content wrapper filters
-
-= 1.6 =
-* Added smilies parsing for user signature
-* Removed support for bbPress 2.2.x
-* Fixed some quote issues with BR tags
-* Fixed quote not working with WordPress 3.9
-
-= 1.5.1 =
-* Fixed signatures not working with bbPress 2.4
-* Fixed quote not working with bbPress 2.4
-
-= 1.5 =
-* Added options to disable any of the plugins bbcodes
-* Improved bbcodes: youtube code supports full url
-* Improved bbcodes: vimeo code supports full url
-* Removed support for bbPress 2.1.x
-* Fixed option for showing and hiding bbCode notice
-* Fixed bbCode youtube and vimeo don't work with SSL active
-
-= 1.4 =
-* Select profile group in BuddyPress for signature editor
-* Changed loading order for bbPress 2.3 compatibility
-* Admin side uses proper enqueue method to load style
-* Dropped support for bbPress 2.0
-* Dropped support for WordPress 3.2
-* Fixed quote not setting proper ID for lead topic display
-* Fixed testing for roles allowed for all available tools
-* Fixed missing enhanced info when editing signatures
-* Fixed missing table cell ending for admin side signature editor
-
-= 1.3.1 =
-* Fixed signature visible to logged in users only
-* Fixed detection of bbPress 2.2
-
-= 1.3 =
-* Added support for dynamic roles from bbPress 2.2
-* Added signature edit to BuddyPress profile editor
-* Using enqueue scripts and styles to load files on frontend
-* Various styling improvements to embedded forms and elements
-* Admin menu now uses 'activate_plugins' capability by default
-* Screenshots removed from plugin and added into assets directory
-* Fixed duplicated signature form on profile edit page
-* Fixed signature fails to find topic/reply author
-* Fixed signature not displayed when using lead topic
-* Fixed quote not working when using lead topic
-* Fixed quote in some cases quote link is missing
-* Fixed bbcodes not applied when displaying lead topic
-
-= 1.2.9 =
-* Fixed another important quote problem with JavaScript
-
-= 1.2.8 =
-* Fixed quote not working with HTML editor with fancy editor
-* Fixed scroll in JavaScript for quote with IE7 and IE8
-* Fixed JavaScript use of trim function with IE7 and IE8
-* Fixed problem with quote that breaks the oEmbed
-
-= 1.2.7 =
-* BuddyPress with site wide bbPress supported
-* Support for signature editing with admin side profile editor
-* Expanded list of FAQ entries
-* Panel for upgrade to GD bbPress Toolbox
-* Added few missing translation strings
-* Added German Translation
-* Change to generating some links in toolbar menu
-* Fixed quote element that can include attachments also
-* Fixed quote option displayed when not allowed
-
-= 1.2.6 =
-* Fixed toolbar menu when there are no forums to show
-
-= 1.2.5 =
-* Added Serbian translation
-* Check if bbPress is activated before loading code
-
-= 1.2.4 =
-* Fixed toolbar integration bug causing posts edit problems
-
-= 1.2.3 =
-* Improvements to shared functions loading
-* Improvements to loading of plugin modules
-
-= 1.2.2 =
-* Fixed search topics view for bbPress 2.0.2
-
-= 1.2.1 =
-* Updated readme.txt with more information
-* Fixed broken links in the context help
-* Fixed invalid display of user signatures
-
-= 1.2.0 =
-* Added user signature with BBCode and HTML support
-* Added use of capabilities for all plugin features
-* Added support for setting up additional custom views
-* Added BBCodes: Vimeo, Image, Font Size, Font Color
-* Added basic support for topics search results view
-* Allows use of the WordPress rich editor for quoting
-* Allows to quote only selected portion of the text
-* When you click quote button, page will scroll to the form
-* Improvements for the bbPress 2.1 compatibility
-
-= 1.1.0 =
-* Added BBCodes shortcodes support
-* Added quote reply or topic support
-* Added file with shared functions
-* Plugin features organized into mods
-
-= 1.0.0 =
-* First official release
+Full changelog: [GD bbPress Tools Changelog](https://www.dev4press.com/plugins/gd-bbpress-tools/changelog/)
 
 == Screenshots ==
 1. Main settings panel
