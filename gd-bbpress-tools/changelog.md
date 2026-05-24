@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### Version: 4.0.1 (2026.05.24)
+* **fix** using the wrong constant to load the template
+
 ### Version: 4.0 (2026.04.21)
 * **new** system requirements: PHP 8.0 or newer
 * **new** system requirements: WordPress 6.2 or newer

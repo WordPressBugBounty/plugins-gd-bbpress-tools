@@ -7,7 +7,7 @@
  * Author:            Milan Petrovic
  * Author URI:        https://www.dev4press.com/
  * Text Domain:       gd-bbpress-tools
- * Version:           4.0
+ * Version:           4.0.1
  * Requires at least: 6.2
  * Tested up to:      7.0
  * Requires PHP:      8.0

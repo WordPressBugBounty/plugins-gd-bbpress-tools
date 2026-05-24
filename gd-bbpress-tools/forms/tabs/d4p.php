@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     </fieldset>
 </div>
 <div class="d4p-information-second">
-    <?php include( GDBBPRESSATTACHMENTS_PATH . 'forms/more/toolbox.php' ); ?>
+    <?php include( GDBBPRESSTOOLS_PATH . 'forms/more/toolbox.php' ); ?>
 </div>
 
 <div class="d4p-clear"></div>

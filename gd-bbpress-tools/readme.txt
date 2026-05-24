@@ -1,7 +1,7 @@
 === GD bbPress Tools ===
 Contributors: GDragoN
 Donate link: https://www.dev4press.com/plugins/gd-bbpress-tools/
-Version: 4.0
+Version: 4.0.1
 Tags: dev4press, bbpress, signature, quote, bbcodes
 Requires at least: 6.2
 Requires PHP: 8.0
@@ -123,6 +123,9 @@ Various security-related updates, improvements and fixes.
 Few updates and improvements.
 
 == Changelog ==
+= 4.0.1 (2026.05.24) =
+* Fix: using the wrong constant to load the template
+
 = 4.0 (2026.04.21) =
 * New: system requirements: PHP 8.0 or newer
 * New: system requirements: WordPress 6.2 or newer
