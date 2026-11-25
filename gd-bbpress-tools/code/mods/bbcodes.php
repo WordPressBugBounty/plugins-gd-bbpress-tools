@@ -305,6 +305,11 @@ class GDBTOModShortcodes {
 	}
 
 	public function strip_advanced( $content ) {
+		/**
+		 * Filters which BBCodes are removed when advanced BBCodes are restricted.
+		 *
+		 * @param string[] $advanced BBCode names, without brackets.
+		 */
 		$pattern = $this->_regex( apply_filters( 'd4p_bbpresstools_bbcode_advanced_list', $this->advanced ) );
 
 		return preg_replace_callback( "/$pattern/s", array( $this, '_strip' ), $content );
@@ -325,6 +330,9 @@ class GDBTOModShortcodes {
 			echo '<br/>' . esc_html__( 'Your account can\'t use Advanced BBCodes, they will be stripped before saving.', 'gd-bbpress-tools' );
 		}
 
+		/**
+		 * Fires inside the BBCode notice paragraph on topic and reply forms, after the default text.
+		 */
 		do_action( 'd4p_bbpresstools_bbcode_notice' );
 
 		echo '</p></div>';
@@ -343,7 +351,7 @@ class GDBTOModShortcodes {
 	}
 
 	public function shortcode_s( $atts, $content = null ) {
-		return $this->_simple( 's', 'del', 'strikethrough', $atts, $content );
+		return $this->_simple( 's', 's', 'strikethrough', $atts, $content );
 	}
 
 	public function shortcode_right( $atts, $content = null ) {

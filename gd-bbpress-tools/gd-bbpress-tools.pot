@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Plural - Forms: nplurals = INTEGER; plural = EXPRESSION;\n"
-"Project-Id-Version: GD bbPress Tools\n"
+"Project-Id-Version: forumTools for bbPress\n"
 "POT-Creation-Date: 04/28/2024 12:41:14 PM\n"
 "Language-Team: Milan Petrovic <support@dev4press.com>\n"
 "MIME-Version: 1.0\n"
@@ -242,11 +242,11 @@ msgid "bbPress Settings"
 msgstr ""
 
 #: code/mods/toolbar.php:170
-msgid "GD bbPress Tools"
+msgid "forumTools for bbPress"
 msgstr ""
 
 #: code/mods/toolbar.php:177
-msgid "GD bbPress Attachments"
+msgid "forumAttachments for bbPress"
 msgstr ""
 
 #: code/mods/toolbar.php:185
@@ -283,8 +283,8 @@ msgstr ""
 msgid "Topics Freshness"
 msgstr ""
 
-#: code/admin.php:185
-msgid "Upgrade to GD bbPress Toolbox Pro"
+#: code/admin.php:191
+msgid "Upgrade to forumToolbox Pro for bbPress"
 msgstr ""
 
 #: code/admin.php:196
@@ -392,8 +392,8 @@ msgstr ""
 msgid "Special upgrade discount"
 msgstr ""
 
-#: forms/more/toolbox.php:31
-msgid "Some of the features you will get with GD bbPress Toolbox Pro"
+#: forms/more/toolbox.php:24
+msgid "Some of the features you will get with forumToolbox Pro for bbPress"
 msgstr ""
 
 #: forms/more/toolbox.php:33
@@ -440,8 +440,8 @@ msgstr ""
 msgid "and much more..."
 msgstr ""
 
-#: forms/more/toolbox.php:26
-msgid "Buy GD bbPress Toolbox Pro license or Dev4Press Plugins Club Membership license and get %s discount using this coupon"
+#: forms/more/toolbox.php:42
+msgid "Buy forumToolbox Pro for bbPress license or bbPress Plugins Club Membership license and get 10% discount using this coupon"
 msgstr ""
 
 #: forms/tabs/about.php:19
@@ -889,8 +889,8 @@ msgstr ""
 msgid "Topic Views"
 msgstr ""
 
-#: forms/tabs/views.php:20
-msgid "Topic Views are core bbPress feature, and GD bbPress Tools plugin only registers new views. If you have not used views before, best way to start is by using 'bbPress Topic Views List' widget that will display all registered views."
+#: forms/tabs/views.php:23
+msgid "Topic Views are core bbPress feature, and forumTools for bbPress only registers new views. If you have not used views before, best way to start is by using 'bbPress Topic Views List' widget that will display all registered views."
 msgstr ""
 
 #: forms/tabs/views.php:25
@@ -958,4 +958,3 @@ msgstr ""
 #: forms/panels.php:15
 msgid "About"
 msgstr ""
-

@@ -6,9 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class GDBTODefaults {
 	public array $default_options = array(
-		'version'                                => '4.0.1',
-		'date'                                   => '2026.05.24.',
-		'build'                                  => 2501,
+		'version'                                => '4.1',
+		'date'                                   => '2026.11.25.',
+		'build'                                  => 2510,
 		'status'                                 => 'stable',
 		'product_id'                             => 'gd-bbpress-tools',
 		'edition'                                => 'free',

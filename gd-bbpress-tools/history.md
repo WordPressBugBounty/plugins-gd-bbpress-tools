@@ -1,4 +1,4 @@
-# GD bbPress Tools
+# forumTools for bbPress
 
 ## Changelog
 

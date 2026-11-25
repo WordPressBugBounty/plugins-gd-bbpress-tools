@@ -184,10 +184,17 @@ class GDBTOCore {
 	}
 
 	public function init_modules() : void {
+		/**
+		 * Fires during bbPress initialization after forumTools for bbPress loads its enabled modules.
+		 */
 		do_action( 'bbtoolbox_init' );
 	}
 
 	public function hook_modules() : void {
+		/**
+		 * Fires during bbPress initialization after forumTools for bbPress initializes its modules
+		 * and loads its admin or front-end component.
+		 */
 		do_action( 'bbtoolbox_core' );
 	}
 

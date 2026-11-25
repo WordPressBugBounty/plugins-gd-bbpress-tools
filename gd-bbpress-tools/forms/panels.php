@@ -23,7 +23,7 @@ $to_load = $current;
 
 ?>
 <div class="wrap">
-    <h2>GD bbPress Tools</h2>
+    <h2>forumTools for bbPress</h2>
     <div id="icon-tools" class="icon32"><br></div>
     <h2 class="nav-tab-wrapper d4p-tabber-ctrl">
         <?php

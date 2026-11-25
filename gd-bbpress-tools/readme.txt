@@ -1,121 +1,88 @@
-=== GD bbPress Tools ===
+=== forumTools for bbPress ===
 Contributors: GDragoN
 Donate link: https://www.dev4press.com/plugins/gd-bbpress-tools/
-Version: 4.0.1
+Stable tag: 4.1
 Tags: dev4press, bbpress, signature, quote, bbcodes
-Requires at least: 6.2
+Requires at least: 6.4
 Requires PHP: 8.0
-Tested up to: 7.0
-Stable tag: trunk
+Tested up to: 7.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Adds different expansions and tools to the bbPress plugin powered forums: BBCode support, signatures, various tweaks, custom views, quote...
+Add quoting, signatures, BBCode formatting, and extra topic views to your bbPress forums.
 
 == Description ==
-Adds various expansions and tools to the bbPress plugin implemented forums. Currently, included features:
+forumTools for bbPress adds features for forum members and administrators.
 
-* Quote Reply or Topic
-* Change allowed HTML tags and attributes
-* User signature with BBCode and HTML support
-* Signature field in BuddyPress profile edit
-* Toolbar menu integration
-* BBCode shortcodes with 30 BBCodes
-* Limit bbPress admin side access
-* Tweak: Disable bbPress breadcrumbs
-* Tweak: Topic tags field in reply form for author only
-* Tweak: Show lead topic
-* Tweak: Show search form for all forums and topics
-* Tweak: Disable 'private' title prefix
-* Topics View: Topics with most replies
-* Topics View: Latest Topics
-* Topics View: Topics by freshness
+* Quote topics and replies directly from a discussion.
+* Add forum signatures with plain text, BBCode, HTML, or a combination of BBCode and HTML. Control access and signature length in the settings.
+* Edit signatures from WordPress or bbPress profiles, or from a selected BuddyPress profile field group.
+* Format topics and replies with BBCode, and choose which HTML tags and attributes bbPress accepts in posts.
+* Add forum links to the WordPress toolbar and restrict access to the bbPress admin area by role.
+* Adjust breadcrumbs, topic tags in reply forms, lead topics, search forms, and the private title prefix.
+* Add topic views for the most replies, latest topics, and recent activity.
 
-= bbPress Plugin Versions =
-GD bbPress Tools 3.5.3 supports bbPress 2.6.2 or newer. Older bbPress versions are no longer supported!
+= More free Dev4Press plugins for bbPress =
+* [forumManager for bbPress](https://wordpress.org/plugins/gd-forum-manager-for-bbpress/) - quick and bulk forums and topics edit
+* [membersDirectory for bbPress](https://wordpress.org/plugins/gd-members-directory-for-bbpress/) - show filterable list of all forum members
+* [powerSearch for bbPress](https://wordpress.org/plugins/gd-power-search-for-bbpress/) - add advanced search to the bbPress topics
+* [forumAttachments for bbPress](https://wordpress.org/plugins/gd-bbpress-attachments/) - attachments for topics and replies
+* [topicPolls for bbPress](https://wordpress.org/plugins/gd-topic-polls/) - add polls to the bbPress topics
 
-= More free dev4Press.com plugins for bbPress =
-* [GD Forum Manager](https://wordpress.org/plugins/gd-forum-manager-for-bbpress/) - quick and bulk forums and topics edit
-* [GD Members Directory](https://wordpress.org/plugins/gd-members-directory-for-bbpress/) - show filterable list of all forum members
-* [GD Power Search](https://wordpress.org/plugins/gd-power-search-for-bbpress/) - add advanced search to the bbPress topics
-* [GD bbPress Attachments](https://wordpress.org/plugins/gd-bbpress-attachments/) - attachments for topics and replies
-* [GD Topic Polls](https://wordpress.org/plugins/gd-topic-polls/) - add polls to the bbPress topics
+= Upgrade to forumToolbox Pro for bbPress =
 
-= Upgrade to GD bbPress Toolbox Pro =
-The Pro version contains many more great features:
+* **Attachments** with controls to restrict allowed upload types and define custom file types.
+* **Editing** with TinyMCE, a BBCode toolbar, and 40+ BBCodes including Hide and Spoiler.
+* **Moderation and privacy** with topic and reply reporting, private topics and replies, automatic closing of inactive topics, and additional privacy controls.
+* **Member features** with thanks, user stats in topics and replies, new and unread topic tracking, forum and user muting, and notification email controls.
+* **Forum tools** with 23 topic views (20 more than the free plugin), nine additional widgets, per-forum settings overrides, and expanded BuddyPress support.
+* **Administration** with a Setup Wizard, a responsive admin interface, the query performance Booster, SEO tools, and additional forum tweaks.
 
-* Enhanced attachments features
-* Limit file types attachments upload
-* Add custom file types for upload
-* BBCodes editor toolbar
-* Report topics and replies
-* Say thanks to forum members
-* Query Performance Booster
-* Various SEO features
-* Various privacy features
-* Enable TinyMCE editor
-* Private topics and replies
-* Auto closing of inactive topics
-* Notification email control
-* Show user stats in topics and replies
-* Track new and unread topics
-* Mute Forums and Users
-* Great new responsive admin UI
-* Setup Wizard
-* Forum based settings overrides
-* Improved BuddyPress support
-* 40 BBCodes (including Hide and Spoiler)
-* 19 more Topics Views
-* 9 additional widgets
-* Many great tweaks
-* And much, much more
-
-With more features on the roadmap exclusively for Pro version.
-
-* More information about [GD bbPress Toolbox Pro](https://www.dev4press.com/plugins/gd-bbpress-toolbox/)
-* More Premium plugins for bbPress [bbPress Plugins Club](https://www.dev4press.com/bbpress-club/)
+Learn more about [forumToolbox Pro for bbPress](https://www.dev4press.com/plugins/gd-bbpress-toolbox/) and the [bbPress Plugins Club](https://www.dev4press.com/bbpress-club/).
 
 == Installation ==
-= General Requirements =
-* PHP: 8.0 or newer
+= Requirements =
 
-= WordPress Requirements =
-* WordPress: 6.2 or newer
+* WordPress 6.4 or newer
+* PHP 8.0 or newer
+* bbPress 2.6.2 or newer, installed as a WordPress plugin
 
-= bbPress Requirements =
-* bbPress Plugin: 2.6.2 or newer
+BuddyPress is optional. Enable its Extended Profiles component to edit forum signatures in BuddyPress member profiles.
 
-= Basic Installation =
-* Plugin folder in the WordPress plugins folder must be `gd-bbpress-tools`
-* Upload folder `gd-bbpress-tools` to the `/wp-content/plugins/` directory
-* Activate the plugin through the 'Plugins' menu in WordPress
+= Setup =
+
+1. Install and activate bbPress.
+2. In **Plugins → Add New Plugin**, search for **forumTools for bbPress**, then install and activate it.
+3. Open **Forums → Tools** to configure the plugin.
+
+For a manual installation, upload the `gd-bbpress-tools` directory to `/wp-content/plugins/` and activate the plugin from **Plugins**.
 
 == Frequently Asked Questions ==
 = Where can I configure the plugin? =
-Open the Forums menu, and you will see Tools item there. This will open a panel with global plugin settings.
+In the WordPress dashboard, open **Forums → Tools**. The **Settings** tab includes signatures, quoting, and allowed HTML. Use the **Tweaks**, **BBCodes**, and **Views** tabs for their respective settings.
 
-= Will this plugin work with old, standalone bbPress (versions 1.x) installation? =
-No. This plugin requires the plugin versions of bbPress 2.6.2 or higher.
+= Where do members edit their forum signatures? =
+Members with permission to use signatures can edit the **Forum Signature** field in their WordPress profile or on their bbPress profile edit screen. In **Forums → Tools → Settings**, the **User Signature** and **User Signature: HTML / BBCodes Enhanced** sections control who can edit signatures, the maximum length, and which formats members can use.
 
-= Click on Quote button doesn't add quoted content? =
-This happens if the plugin's JavaScript is not loaded. Make sure that both CSS and JavaScript options are enabled. If that doesn't help, make sure to enable 'Always Include' option too.
+= Why does my signature look different after upgrading to 4.1? =
+Version 4.1 filters both new and existing signatures when displaying them. Common formatting, links, images, smileys, and standard BBCode still work when enabled. The default allowlist strips custom CSS classes, HTML IDs, and iframe embeds. Use a regular link to share a video.
 
-= Sometimes quoted content when saved appears broken? =
-The quote itself doesn't strip HTML, but bbPress does. If the quoted section contains HTML tags or tag attributes that bbPress doesn't allow, it will strip them when the reply is saved. To solve that, you need to use the option to control allowed HTML tags in topics and replies.
+= Where is the signature field in BuddyPress? =
+With **Extended Profiles** active, the field appears when a member edits the profile group selected under **User Signature: BuddyPress Profile Field Group** in **Forums → Tools → Settings**. Check that the signature feature is active and that the member's role can use it.
 
-= Some features not working with BuddyPress group forums? =
-This happens if the plugin's JavaScript is not loaded. Make sure that both CSS and JavaScript options are enabled and 'Always Include' option is also enabled.
+= Why does the Quote button do nothing? =
+The plugin may be missing its JavaScript on that page. This can happen when forums are embedded with shortcodes or displayed in BuddyPress groups. In **Forums → Tools → Settings**, enable **Always Include** under **JavaScript and CSS Settings** to load the plugin's assets on all public pages.
 
-= Does this plugin work with bbPress and BuddyPress groups? =
-GD bbPress Tools 3.1 is tested with BuddyPress 6.0 using bbPress for Groups forums. Make sure you enable JavaScript and CSS Settings Always Include option in the plugin settings.
+= Why does a quote lose formatting after I save my reply? =
+bbPress filters the saved reply according to the HTML the reply author can use. Review **Allowed HTML** under **Forums → Tools → Settings** if you need to change the tags or attributes allowed in replies. Signatures use a separate HTML allowlist.
 
-= Some BuddyPress features break when I use BuddyPress Nuovo templates? =
-The problem is caused by the Italic BBCode due to the conflict with the Underscore templates system BuddyPress uses. You can disable Italic BBCode, or you can limit BBCodes to the bbPress content only (highly recommended).
-
-= When the quote is used on the formatted content, formatting will be gone inside displayed quote? =
-This happens because quoting can only take rendered HTML as is, and when saved, bbPress will remove some HTML elements based on the user role. [GD bbPress Toolbox Pro](https://www.dev4press.com/plugins/gd-bbpress-toolbox/) plugin includes additional features that expand the allowed HTML elements for all roles, and that solves this quote problem.
+= What if the Italic BBCode interferes with BuddyPress Nouveau? =
+On the **BBCodes** tab, limit BBCodes to bbPress content or disable the **Italic** BBCode. The conflict can occur when BuddyPress's Underscore templates are processed as BBCode.
 
 == Upgrade Notice ==
+= 4.1 =
+Security update for forum signatures. Existing signatures are filtered when displayed. Common formatting remains supported. Custom classes, IDs, and embedded players are removed.
+
 = 4.0 =
 Various security-related updates, improvements and fixes.
 
@@ -123,6 +90,15 @@ Various security-related updates, improvements and fixes.
 Few updates and improvements.
 
 == Changelog ==
+= 4.1 (2026.11.25) =
+* New: renamed the plugin to forumTools for bbPress.
+* New: filter for the signature HTML allowlist
+* Edit: use the HTML `<s>` element for strikethrough BBCode
+* Edit: document plugin actions and filters in the source code
+* Fix: stored cross-site scripting vulnerability in forum signatures
+* Fix: verify signature saves with a nonce
+* Fix: signature saving preserve literal backslashes
+
 = 4.0.1 (2026.05.24) =
 * Fix: using the wrong constant to load the template
 
@@ -157,7 +133,7 @@ Few updates and improvements.
 * Updated: code style and translation formatting
 * Updated: main plugin JavaScript library
 
-Full changelog: [GD bbPress Tools Changelog](https://www.dev4press.com/plugins/gd-bbpress-tools/changelog/)
+Full changelog: [forumTools for bbPress Changelog](https://www.dev4press.com/plugins/gd-bbpress-tools/changelog/)
 
 == Screenshots ==
 1. Main settings panel

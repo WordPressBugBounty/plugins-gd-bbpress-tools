@@ -20,7 +20,7 @@ $_user_roles = $_user_roles ?? array();
     <div class="d4p-settings">
         <fieldset>
             <h3><?php esc_html_e( 'Topic Views', 'gd-bbpress-tools' ); ?></h3>
-            <p><?php esc_html_e( 'Topic Views are core bbPress feature, and GD bbPress Tools plugin only registers new views. If you have not used views before, best way to start is by using \'bbPress Topic Views List\' widget that will display all registered views.', 'gd-bbpress-tools' ); ?></p>
+            <p><?php esc_html_e( 'Topic Views are core bbPress feature, and forumTools for bbPress only registers new views. If you have not used views before, best way to start is by using \'bbPress Topic Views List\' widget that will display all registered views.', 'gd-bbpress-tools' ); ?></p>
         </fieldset>
 
         <fieldset>

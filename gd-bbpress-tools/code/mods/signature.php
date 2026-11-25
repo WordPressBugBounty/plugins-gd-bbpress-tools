@@ -72,14 +72,23 @@ class GDBTOModSignature {
 			$_signature = d4p_bbp_update_shorthand_bbcodes( $profile_user->signature );
 
 			$profile_user->filter = $old_filter;
+
+			wp_nonce_field( 'gdbbptools_save_signature_' . $profile_user->ID, 'gdbbptools_signature_nonce', false );
 		}
 
+		/**
+		 * Filters the signature editor template for WordPress and bbPress profile forms.
+		 *
+		 * @param string $file Absolute path to the PHP template for the current profile form.
+		 */
 		include_once( apply_filters( 'd4p_bbpresstools_signature_editor_file', GDBBPRESSTOOLS_PATH . 'forms/tools/signature_profile.php' ) );
 	}
 
 	public function editor_form_bbpress() : void {
 		$_signature = d4p_bbp_update_shorthand_bbcodes( bbp_get_displayed_user_field( 'signature' ) );
+		wp_nonce_field( 'gdbbptools_save_signature_' . bbp_get_displayed_user_id(), 'gdbbptools_signature_nonce', false );
 
+		/** This filter is documented in code/mods/signature.php. */
 		$form = apply_filters( 'd4p_bbpresstools_signature_editor_file', GDBBPRESSTOOLS_PATH . 'forms/tools/signature_bbpress.php' );
 		include_once( $form );
 	}
@@ -94,7 +103,13 @@ class GDBTOModSignature {
 
 			if ( $user_id > 0 ) {
 				$_signature = d4p_bbp_update_shorthand_bbcodes( get_user_meta( $user_id, 'signature', true ) );
+				wp_nonce_field( 'gdbbptools_save_signature_' . $user_id, 'gdbbptools_signature_nonce', false );
 
+				/**
+				 * Filters the signature editor template for the configured BuddyPress profile group.
+				 *
+				 * @param string $file Absolute path to the BuddyPress PHP template.
+				 */
 				$form = apply_filters( 'd4p_bbpresssignature_bbpress_editor_file', GDBBPRESSTOOLS_PATH . 'forms/tools/signature_buddypress.php' );
 				include_once( $form );
 			}
@@ -131,16 +146,14 @@ class GDBTOModSignature {
 
 	public function format_signature( $sig ) : string {
 		if ( ! $this->html ) {
-			$sig = strip_tags( $sig );
+			$sig = wp_strip_all_tags( $sig );
 		}
 
 		if ( ! $this->bbcodes ) {
 			$sig = strip_shortcodes( $sig );
 		}
 
-		if ( ! current_user_can( 'unfiltered_html' ) ) {
-			$sig = stripslashes( wp_filter_post_kses( addslashes( $sig ) ) );
-		}
+		$sig = $this->html ? $this->sanitize_signature_html( $sig ) : wp_kses( $sig, array() );
 
 		if ( strlen( $sig ) > $this->max_length ) {
 			$sig = substr( $sig, 0, $this->max_length );
@@ -149,12 +162,55 @@ class GDBTOModSignature {
 		return trim( $sig );
 	}
 
-	public function editor_save( $user_id ) : void {
-		if ( isset( $_POST['signature'] ) ) {
-			$sig = $this->format_signature( $_POST['signature'] );
+	private function sanitize_signature_html( string $sig ) : string {
+		// Keep formatting while excluding IDs, form controls, and classes used by other UI components.
+		$attributes = array(
+			'class' => array(
+				'value_callback' => static function ( $value ) {
+					return preg_match( '/\A(?:d4pbbc-[a-z0-9-]+|d4p-bbt-quote-title|wp-smiley)\z/', $value ) === 1;
+				},
+			),
+			'style' => true,
+			'title' => true,
+		);
 
-			update_user_meta( $user_id, 'signature', $sig );
+		$tags = array_fill_keys( array(
+			'abbr', 'b', 'br', 'caption', 'cite', 'code', 'dd', 'div', 'dl', 'dt', 'em', 'fieldset',
+			'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'kbd', 'legend', 'li', 'mark', 'p', 'pre',
+			's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'table', 'tbody', 'tfoot', 'thead', 'tr',
+			'u', 'ul', 'var',
+		), $attributes );
+
+		$tags['a']          = $attributes + array( 'href' => true, 'rel' => true, 'target' => true );
+		$tags['bdo']        = $attributes + array( 'dir' => true );
+		$tags['blockquote'] = $attributes + array( 'cite' => true );
+		$tags['img']        = $attributes + array( 'src' => true, 'alt' => true, 'width' => true, 'height' => true );
+		$tags['ol']         = $attributes + array( 'start' => true, 'reversed' => true );
+		$tags['td']         = $attributes + array( 'colspan' => true, 'rowspan' => true );
+		$tags['th']         = $tags['td'] + array( 'scope' => true );
+
+		/**
+		 * Filters the HTML allowlist for formatted signatures at save and render time.
+		 *
+		 * @param array $tags Allowed HTML tags and their attributes.
+		 */
+		$tags = apply_filters( 'd4p_bbpresstools_signature_allowed_html', $tags );
+
+		return wp_kses( $sig, $tags );
+	}
+
+	public function editor_save( $user_id ) : void {
+		if ( ! is_string( $_POST['signature'] ?? null ) || ! is_string( $_POST['gdbbptools_signature_nonce'] ?? null ) ) {
+			return;
 		}
+
+		if ( ! wp_verify_nonce( wp_unslash( $_POST['gdbbptools_signature_nonce'] ), 'gdbbptools_save_signature_' . $user_id ) ) {
+			return;
+		}
+
+		$sig = $this->format_signature( wp_unslash( $_POST['signature'] ) );
+
+		update_user_meta( $user_id, 'signature', wp_slash( $sig ) );
 	}
 
 	public function reply_content( $content, $reply_id = 0 ) {
@@ -171,7 +227,7 @@ class GDBTOModSignature {
 		$sig = d4p_bbp_update_shorthand_bbcodes( $signature );
 
 		if ( $sig != $signature ) {
-			update_user_meta( $user_id, 'signature', $sig, $signature );
+			update_user_meta( $user_id, 'signature', wp_slash( $sig ), $signature );
 		}
 
 		if ( $sig != '' ) {
@@ -180,8 +236,11 @@ class GDBTOModSignature {
 			$sig = wpautop( $sig );
 			$sig = shortcode_unautop( $sig );
 			$sig = do_shortcode( $sig );
+			$sig = $this->sanitize_signature_html( $sig );
 
-			$content .= '<div class="bbp-signature">' . $sig . '</div>';
+			if ( trim( $sig ) !== '' ) {
+				$content .= '<div class="bbp-signature">' . $sig . '</div>';
+			}
 		}
 
 		return $content;

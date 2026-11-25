@@ -1,6 +1,15 @@
-# GD bbPress Tools
+# forumTools for bbPress
 
 ## Changelog
+
+### Version: 4.1 (2026.11.25)
+* **edit** rename the plugin to forumTools for bbPress
+* **new** filter for the signature HTML allowlist
+* **edit** use the HTML `<s>` element for strikethrough BBCode
+* **edit** document plugin actions and filters in the source code
+* **fix** stored cross-site scripting vulnerability in forum signatures
+* **fix** verify signature saves with a nonce
+* **fix** signature saving preserve literal backslashes
 
 ### Version: 4.0.1 (2026.05.24)
 * **fix** using the wrong constant to load the template

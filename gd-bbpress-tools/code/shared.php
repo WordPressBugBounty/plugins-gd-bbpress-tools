@@ -93,6 +93,11 @@ if ( ! function_exists( 'd4p_is_bbpress' ) ) {
 	function d4p_is_bbpress() : bool {
 		$is = d4p_has_bbpress() && is_bbpress();
 
+		/**
+		 * Filters whether the current request is treated as a bbPress page.
+		 *
+		 * @param bool $is Whether a supported bbPress version recognizes the current page.
+		 */
 		return apply_filters( 'd4p_is_bbpress', $is );
 	}
 }

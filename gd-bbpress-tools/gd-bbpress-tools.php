@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Plugin Name:       GD bbPress Tools
+ * Plugin Name:       forumTools for bbPress
  * Plugin URI:        https://www.dev4press.com/plugins/gd-bbpress-tools/
  * Description:       Adds different expansions and tools to the bbPress plugin powered forums: BBCode support, signatures, various tweaks, custom views, quote...
  * Author:            Milan Petrovic
  * Author URI:        https://www.dev4press.com/
  * Text Domain:       gd-bbpress-tools
- * Version:           4.0.1
- * Requires at least: 6.2
- * Tested up to:      7.0
+ * Version:           4.1
+ * Requires at least: 6.4
+ * Tested up to:      7.2
  * Requires PHP:      8.0
  * Requires Plugins:  bbpress
  * License:           GPLv3 or later

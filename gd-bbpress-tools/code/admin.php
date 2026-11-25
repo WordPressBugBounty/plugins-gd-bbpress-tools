@@ -163,7 +163,7 @@ class GDBTOAdmin {
 	}
 
 	public function admin_menu() {
-		$this->page_ids[] = add_submenu_page( 'edit.php?post_type=forum', 'GD bbPress Tools', __( 'Tools', 'gd-bbpress-tools' ), GDBBPRESSTOOLS_CAP, 'gdbbpress_tools', array(
+		$this->page_ids[] = add_submenu_page( 'edit.php?post_type=forum', 'forumTools for bbPress', __( 'Tools', 'gd-bbpress-tools' ), GDBBPRESSTOOLS_CAP, 'gdbbpress_tools', array(
 			$this,
 			'menu_tools',
 		) );
@@ -188,7 +188,7 @@ class GDBTOAdmin {
 
 	public function plugin_links( $links, $file ) {
 		if ( $file == 'gd-bbpress-tools/gd-bbpress-tools.php' ) {
-			$links[] = '<a target="_blank" style="color: #cc0000; font-weight: bold;" href="https://www.dev4press.com/plugins/gd-bbpress-toolbox/">' . esc_html__( 'Upgrade to GD bbPress Toolbox Pro', 'gd-bbpress-tools' ) . '</a>';
+			$links[] = '<a target="_blank" style="color: #cc0000; font-weight: bold;" href="https://www.dev4press.com/plugins/gd-bbpress-toolbox/">' . esc_html__( 'Upgrade to forumToolbox Pro for bbPress', 'gd-bbpress-tools' ) . '</a>';
 		}
 
 		return $links;
